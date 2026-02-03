@@ -18,6 +18,8 @@ Developer laptop                      Databricks
 
 **Important**: Remote SSH requires a dedicated single-user cluster per attendee. Each user gets their own VM.
 
+**Cluster config**: DBR 17.3 ML (`17.3.x-cpu-ml-scala2.13`), Single Node, Dedicated (SINGLE_USER)
+
 ## Quick start
 
 ```bash

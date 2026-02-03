@@ -10,9 +10,9 @@ WORKSHOP_DIR="$(dirname "$SCRIPT_DIR")"
 # Configuration
 CLUSTER_PREFIX="${CLUSTER_PREFIX:-claude-code-workshop}"
 USERS_FILE="${1:-}"
-SPARK_VERSION="${SPARK_VERSION:-14.3.x-scala2.12}"
-NODE_TYPE="${NODE_TYPE:-Standard_DS3_v2}"
-INIT_SCRIPT_PATH="${INIT_SCRIPT_PATH:-/Volumes/main/default/init_scripts/install-claude-code.sh}"
+SPARK_VERSION="${SPARK_VERSION:-17.3.x-cpu-ml-scala2.13}"
+NODE_TYPE="${NODE_TYPE:-Standard_D4ds_v5}"
+INIT_SCRIPT_PATH="${INIT_SCRIPT_PATH:-/Volumes/main/default/coding_assistants/install-claude.sh}"
 
 # Colors
 RED='\033[0;31m'
@@ -83,11 +83,19 @@ while IFS= read -r user_email; do
     "spark_version": "$SPARK_VERSION",
     "node_type_id": "$NODE_TYPE",
     "num_workers": 0,
-    "autotermination_minutes": 60,
+    "autotermination_minutes": 30,
     "data_security_mode": "SINGLE_USER",
     "single_user_name": "$user_email",
+    "spark_conf": {
+        "spark.databricks.cluster.profile": "singleNode",
+        "spark.master": "local[*]"
+    },
+    "spark_env_vars": {
+        "MLFLOW_EXPERIMENT_NAME": "/Workspace/Shared/claude-code-tracing"
+    },
     "custom_tags": {
         "Workshop": "ClaudeCodeVibeCoding",
+        "ResourceClass": "SingleNode",
         "Owner": "$user_email"
     },
     "init_scripts": [
