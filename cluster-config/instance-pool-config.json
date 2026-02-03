@@ -1,0 +1,18 @@
+{
+  "instance_pool_name": "claude-code-workshop-pool",
+  "node_type_id": "Standard_DS3_v2",
+  "min_idle_instances": 10,
+  "max_capacity": 150,
+  "idle_instance_autotermination_minutes": 30,
+  "preloaded_spark_versions": [
+    "14.3.x-scala2.12"
+  ],
+  "custom_tags": {
+    "Workshop": "ClaudeCodeVibeCoding",
+    "Purpose": "PreWarmedInstancePool"
+  },
+  "azure_attributes": {
+    "availability": "ON_DEMAND_AZURE",
+    "first_on_demand": 150
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "name": "Claude Code Workshop Policy",
+  "description": "Cluster policy for Databricks Apps vibe coding workshop with Claude Code",
+  "definition": {
+    "spark_version": {
+      "type": "regex",
+      "pattern": "14\\.[0-9]+\\.x-scala.*",
+      "defaultValue": "14.3.x-scala2.12"
+    },
+    "node_type_id": {
+      "type": "allowlist",
+      "values": [
+        "Standard_DS3_v2",
+        "Standard_DS4_v2",
+        "Standard_E4ds_v4"
+      ],
+      "defaultValue": "Standard_DS3_v2"
+    },
+    "num_workers": {
+      "type": "range",
+      "minValue": 0,
+      "maxValue": 2,
+      "defaultValue": 0
+    },
+    "autotermination_minutes": {
+      "type": "range",
+      "minValue": 30,
+      "maxValue": 120,
+      "defaultValue": 60
+    },
+    "custom_tags.Workshop": {
+      "type": "fixed",
+      "value": "ClaudeCodeVibeCoading"
+    },
+    "custom_tags.CostCenter": {
+      "type": "fixed",
+      "value": "WorkshopBudget"
+    },
+    "init_scripts.0.volumes.destination": {
+      "type": "fixed",
+      "value": "/Volumes/main/default/init_scripts/install-claude-code.sh"
+    },
+    "spark_env_vars.DATABRICKS_HTTPS_PROXY": {
+      "type": "fixed",
+      "value": "",
+      "hidden": false
+    },
+    "spark_env_vars.DATABRICKS_CA_CERT_PATH": {
+      "type": "fixed",
+      "value": "",
+      "hidden": false
+    },
+    "spark_env_vars.ANTHROPIC_API_KEY": {
+      "type": "fixed",
+      "value": "",
+      "hidden": true
+    }
+  },
+  "max_clusters_per_user": 1
+}

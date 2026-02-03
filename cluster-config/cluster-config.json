@@ -1,0 +1,26 @@
+{
+  "cluster_name": "claude-code-workshop",
+  "spark_version": "14.3.x-scala2.12",
+  "node_type_id": "Standard_DS3_v2",
+  "num_workers": 0,
+  "autotermination_minutes": 60,
+  "spark_env_vars": {
+    "DATABRICKS_HTTPS_PROXY": "",
+    "DATABRICKS_HTTP_PROXY": "",
+    "DATABRICKS_CA_CERT_PATH": "",
+    "ANTHROPIC_API_KEY": ""
+  },
+  "custom_tags": {
+    "Workshop": "ClaudeCodeVibeCoding",
+    "CostCenter": "WorkshopBudget"
+  },
+  "init_scripts": [
+    {
+      "volumes": {
+        "destination": "/Volumes/main/default/init_scripts/install-claude-code.sh"
+      }
+    }
+  ],
+  "data_security_mode": "SINGLE_USER",
+  "single_user_name": ""
+}
