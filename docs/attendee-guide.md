@@ -22,7 +22,19 @@ Before the workshop, ensure you have:
 brew install databricks
 ```
 
-### Windows (PowerShell as Administrator)
+### Windows (corporate environments)
+
+If `winget` is blocked by IT, download manually:
+
+1. Go to: **https://github.com/databricks/cli/releases**
+2. Download `databricks_cli_X.Y.Z_windows_amd64.zip` (latest version)
+3. Extract to `C:\databricks-cli\`
+4. Add `C:\databricks-cli\` to your PATH (search "Environment Variables" in Windows)
+5. Restart PowerShell
+
+See `windows-setup-guide.md` for detailed instructions.
+
+### Windows (if winget available)
 
 ```powershell
 winget install Databricks.DatabricksCLI
@@ -30,9 +42,11 @@ winget install Databricks.DatabricksCLI
 
 ### Verify installation
 
-```bash
+```powershell
 databricks --version
 ```
+
+**Required**: Version 0.269.0 or higher
 
 ---
 

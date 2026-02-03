@@ -87,19 +87,82 @@ If OpenSSH is blocked, Git for Windows includes its own SSH client:
 
 ## Installing Databricks CLI
 
-### Option A: Via winget (recommended)
+Corporate Windows environments often block `winget` and `chocolatey`. Use the manual download method.
+
+### Option A: Manual ZIP download (recommended for corporate Windows)
+
+This works even when package managers are blocked by IT.
+
+**Step 1: Check your CPU architecture**
+
+```powershell
+echo $env:PROCESSOR_ARCHITECTURE
+```
+
+- `AMD64` = 64-bit Intel/AMD (most common)
+- `ARM64` = ARM processor
+- `x86` = 32-bit (rare)
+
+**Step 2: Download the ZIP file**
+
+Go to: **https://github.com/databricks/cli/releases**
+
+Find the latest release (has "Latest" label) and download:
+- `databricks_cli_X.Y.Z_windows_amd64.zip` for AMD64
+- `databricks_cli_X.Y.Z_windows_arm64.zip` for ARM64
+- `databricks_cli_X.Y.Z_windows_386.zip` for x86
+
+**Step 3: Extract the ZIP**
+
+1. Right-click the downloaded ZIP → **Extract All**
+2. Extract to a folder like `C:\databricks-cli\`
+
+**Step 4: Add to PATH**
+
+1. Press Windows key, search "Environment Variables"
+2. Click "Edit the system environment variables"
+3. Click **Environment Variables** button
+4. Under "User variables", select **Path** → **Edit**
+5. Click **New** and add: `C:\databricks-cli\`
+6. Click **OK** on all dialogs
+
+**Step 5: Restart PowerShell and verify**
+
+```powershell
+databricks --version
+```
+
+---
+
+### Option B: Via curl (if available)
+
+Windows 10+ has curl built-in. Run as Administrator:
+
+```powershell
+curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+```
+
+Installs to `C:\Windows\databricks.exe`.
+
+---
+
+### Option C: Via winget (if IT allows)
 
 ```powershell
 winget install Databricks.DatabricksCLI
 ```
 
-After installation, **restart PowerShell** to pick up the new PATH.
+Restart PowerShell after installation.
 
-### Option B: Via pip
+---
+
+### Option D: Via Chocolatey (if IT allows)
 
 ```powershell
-pip install databricks-cli
+choco install databricks-cli
 ```
+
+---
 
 ### Verify installation
 
@@ -107,7 +170,7 @@ pip install databricks-cli
 databricks --version
 ```
 
-**Expected**: `Databricks CLI v0.218.0` or similar
+**Required**: Version `0.269.0` or higher (SSH tunnel requires this version)
 
 ---
 
