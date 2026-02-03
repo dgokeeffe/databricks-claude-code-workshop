@@ -25,6 +25,7 @@
 
 - [ ] Confirm `databricks ssh setup` works through corporate proxy
 - [ ] Test Model Serving endpoint (`/serving-endpoints/anthropic`)
+- [ ] **Verify network access** - see `network-requirements.md` for full domain list
 - [ ] Upload init script to Unity Catalog volume
 - [ ] Create cluster policy
 - [ ] Create instance pool (for faster cluster startup)
